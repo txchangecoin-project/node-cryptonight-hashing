@@ -19,7 +19,7 @@
 
 #include "xmrig/Mem.h"
 
-#include "RandomWOW/src/randomx.h"
+#include "RandomXL/src/randomx.h"
 
 #if (defined(__AES__) && (__AES__ == 1)) || (defined(__ARM_FEATURE_CRYPTO) && (__ARM_FEATURE_CRYPTO == 1))
 #define SOFT_AES false
