@@ -84,7 +84,7 @@ using namespace node;
 using namespace v8;
 using namespace Nan;
 
-NAN_METHOD(random_wow) {
+NAN_METHOD(randomx) {
     if (info.Length() < 2) return THROW_ERROR_EXCEPTION("You must provide two arguments.");
 
     Local<Object> target = info[0]->ToObject();
@@ -744,7 +744,7 @@ NAN_MODULE_INIT(init) {
     Nan::Set(target, Nan::New("cryptonight_heavy_async").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(cryptonight_heavy_async)).ToLocalChecked());
     Nan::Set(target, Nan::New("cryptonight_pico").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(cryptonight_pico)).ToLocalChecked());
     Nan::Set(target, Nan::New("cryptonight_pico_async").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(cryptonight_pico_async)).ToLocalChecked());
-    Nan::Set(target, Nan::New("random_wow").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(random_wow)).ToLocalChecked());
+    Nan::Set(target, Nan::New("randomx").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(randomx)).ToLocalChecked());
 }
 
 NODE_MODULE(cryptonight, init)
