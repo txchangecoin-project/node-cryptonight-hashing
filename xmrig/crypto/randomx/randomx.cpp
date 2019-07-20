@@ -151,7 +151,7 @@ RandomX_ConfigurationBase::RandomX_ConfigurationBase()
 #endif
 }
 
-void RandomX_ConfigurationTxchangecoin::Apply()
+void RandomX_ConfigurationBase::Apply()
 {
 #if defined(_M_X64) || defined(__x86_64__)
 	*(uint32_t*)(codeShhPrefetchTweaked + 3) = ArgonMemory * 16 - 1;
