@@ -55,16 +55,13 @@ void init_rx(const uint8_t* seed_hash_data, xmrig::Variant variant) {
     if (variant != rx_variant) {
         switch (variant) {
             case xmrig::VARIANT_0:
-                randomx_apply_config(RandomX_MoneroConfig);
+                randomx_apply_config(RandomX_TxchangecoinConfig);
                 break;
             case xmrig::VARIANT_RX_WOW:
                 randomx_apply_config(RandomX_WowneroConfig);
                 break;
             case xmrig::VARIANT_RX_LOKI:
                 randomx_apply_config(RandomX_LokiConfig);
-                break;
-            case xmrig::VARIANT_RX_TXX:
-                randomx_apply_config(RandomX_TxchangecoinConfig);
                 break;
             default:
                 throw std::domain_error("Unknown RandomX variant");
