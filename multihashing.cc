@@ -19,7 +19,11 @@
 
 #include "xmrig/Mem.h"
 
+<<<<<<< HEAD
 #include "xmrig/crypto/randomx/randomx.h"
+=======
+#include "RandomXL/src/randomx.h"
+>>>>>>> 043f6cb278b095ecab3ec59e2684927c437870c6
 
 #if (defined(__AES__) && (__AES__ == 1)) || (defined(__ARM_FEATURE_CRYPTO) && (__ARM_FEATURE_CRYPTO == 1))
 #define SOFT_AES false

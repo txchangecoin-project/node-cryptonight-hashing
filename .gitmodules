@@ -1,0 +1,3 @@
+[submodule "RandomXL"]
+	path = RandomXL
+	url = https://github.com/loki-project/RandomX.git
