@@ -224,10 +224,9 @@ void RandomX_ConfigurationTxchangecoin::Apply()
 #undef INST_HANDLE
 }
 
-RandomX_ConfigurationMonero RandomX_MoneroConfig;
+RandomX_ConfigurationTxchangecoin RandomX_TxchangecoinConfig;
 RandomX_ConfigurationWownero RandomX_WowneroConfig;
 RandomX_ConfigurationLoki RandomX_LokiConfig;
-RandomX_ConfigurationTxchangecoin RandomX_TxchangecoinConfig;
 
 RandomX_ConfigurationTxchangecoin RandomX_CurrentConfig;
 
