@@ -70,7 +70,7 @@ RandomX_ConfigurationLoki::RandomX_ConfigurationLoki()
 	ProgramCount = 7;
 }
 
-RandomX_ConfigurationTxchangecoin::RandomX_ConfigurationTxchangecoin()
+RandomX_ConfigurationBase::RandomX_ConfigurationTxchangecoin()
 	: ArgonMemory(262144)
 	, ArgonIterations(3)
 	, ArgonLanes(1)
