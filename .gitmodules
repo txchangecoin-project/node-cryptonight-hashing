@@ -1,3 +1,6 @@
 [submodule "RandomXL"]
 	path = RandomXL
 	url = https://github.com/loki-project/RandomX.git
+[submodule "RandomTXX"]
+	path = RandomTXX
+	url = https://github.com/txchangecoin-project/RandomTXX
