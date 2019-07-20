@@ -70,7 +70,7 @@ RandomX_ConfigurationLoki::RandomX_ConfigurationLoki()
 	ProgramCount = 7;
 }
 
-RandomX_ConfigurationBase::RandomX_ConfigurationTxchangecoin()
+RandomX_ConfigurationBase::RandomX_ConfigurationBase()
 	: ArgonMemory(262144)
 	, ArgonIterations(3)
 	, ArgonLanes(1)
@@ -151,7 +151,7 @@ RandomX_ConfigurationBase::RandomX_ConfigurationTxchangecoin()
 #endif
 }
 
-void RandomX_ConfigurationBase::Apply()
+void RandomX_ConfigurationTxchangecoin::Apply()
 {
 #if defined(_M_X64) || defined(__x86_64__)
 	*(uint32_t*)(codeShhPrefetchTweaked + 3) = ArgonMemory * 16 - 1;
