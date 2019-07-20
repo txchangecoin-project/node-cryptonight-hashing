@@ -22,7 +22,6 @@
                 "xmrig/crypto/c_skein.c",
                 "xmrig/common/crypto/keccak.cpp",
 
-<<<<<<< HEAD
                 "xmrig/crypto/randomx/aes_hash.cpp",
                 "xmrig/crypto/randomx/argon2_ref.c",
                 "xmrig/crypto/randomx/bytecode_machine.cpp",
@@ -44,30 +43,6 @@
                 "xmrig/crypto/randomx/blake2/blake2b.c",
                 '<!@(uname -a | grep "x86_64" >/dev/null && echo "xmrig/crypto/randomx/jit_compiler_x86_static.S" || echo)',
                 '<!@(uname -a | grep "x86_64" >/dev/null && echo "xmrig/crypto/randomx/jit_compiler_x86.cpp" || echo)',
-=======
-                "RandomXL/src/aes_hash.cpp",
-                "RandomXL/src/argon2_ref.c",
-                "RandomXL/src/dataset.cpp",
-                "RandomXL/src/soft_aes.cpp",
-                "RandomXL/src/virtual_memory.cpp",
-                "RandomXL/src/vm_interpreted.cpp",
-                "RandomXL/src/allocator.cpp",
-                "RandomXL/src/assembly_generator_x86.cpp",
-                "RandomXL/src/instruction.cpp",
-                "RandomXL/src/randomx.cpp",
-                "RandomXL/src/superscalar.cpp",
-                "RandomXL/src/vm_compiled.cpp",
-                "RandomXL/src/vm_interpreted_light.cpp",
-                "RandomXL/src/argon2_core.c",
-                "RandomXL/src/blake2_generator.cpp",
-                "RandomXL/src/instructions_portable.cpp",
-                "RandomXL/src/reciprocal.c",
-                "RandomXL/src/virtual_machine.cpp",
-                "RandomXL/src/vm_compiled_light.cpp",
-                "RandomXL/src/blake2/blake2b.c",
-                '<!@(uname -a | grep "x86_64" >/dev/null && echo "RandomXL/src/jit_compiler_x86_static.S" || echo)',
-                '<!@(uname -a | grep "x86_64" >/dev/null && echo "RandomXL/src/jit_compiler_x86.cpp" || echo)',
->>>>>>> 043f6cb278b095ecab3ec59e2684927c437870c6
             ],
             "include_dirs": [
                 "xmrig",

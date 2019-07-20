@@ -10,7 +10,7 @@ Algorithms
 * cryptonight-light (v0, v1)
 * cryptonight-heavy (v0, xhv, tube)
 * cryptonight-pico (trtl)
-* RandomX (Wownero, Loki, Txchangecoin)
+* RandomX (Wownero)
 
 Installing locally and testing
 -----

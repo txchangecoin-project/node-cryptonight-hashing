@@ -249,7 +249,7 @@ static int v4_random_math_init(struct V4_Instruction* code, const uint64_t heigh
 		code_size = 0;
 
 		int total_iterations = 0;
-		r8_used = (VARIANT == xmrig::VARIANT_WOW);
+		r8_used = (VARIANT == xmrig::VARIANT_TXX);
 
 		// Generate random code to achieve minimal required latency for our abstract CPU
 		// Try to get this latency for all 4 registers
@@ -294,7 +294,7 @@ static int v4_random_math_init(struct V4_Instruction* code, const uint64_t heigh
 			if (((opcode == ADD) || (opcode == SUB) || (opcode == XOR)) && (a == b))
 			{
 				// a is always < 4, so we don't need to check bounds here
-				b = (VARIANT == xmrig::VARIANT_WOW) ? (a + 4) : 8;
+				b = (VARIANT == xmrig::VARIANT_TXX) ? (a + 4) : 8;
 				src_index = b;
 			}
 

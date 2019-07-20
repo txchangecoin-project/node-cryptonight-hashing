@@ -19,11 +19,7 @@
 
 #include "xmrig/Mem.h"
 
-<<<<<<< HEAD
 #include "xmrig/crypto/randomx/randomx.h"
-=======
-#include "RandomXL/src/randomx.h"
->>>>>>> 043f6cb278b095ecab3ec59e2684927c437870c6
 
 #if (defined(__AES__) && (__AES__ == 1)) || (defined(__ARM_FEATURE_CRYPTO) && (__ARM_FEATURE_CRYPTO == 1))
 #define SOFT_AES false
@@ -33,10 +29,10 @@
 #endif
 
 static struct cryptonight_ctx* ctx = nullptr;
-static randomx_cache* rx_cache[xmrig::VARIANT_MAX] = {nullptr};
-static randomx_vm* rx_vm[xmrig::VARIANT_MAX] = {nullptr};
+static randomx_cache* rx_cache = nullptr;
+static randomx_vm* rx_vm = nullptr;
 static xmrig::Variant rx_variant = xmrig::VARIANT_MAX;
-static uint8_t rx_seed_hash[xmrig::VARIANT_MAX][32] = {};
+static uint8_t rx_seed_hash[32] = {};
 
 void init_ctx() {
     if (ctx) return;
@@ -45,18 +41,18 @@ void init_ctx() {
 
 void init_rx(const uint8_t* seed_hash_data, xmrig::Variant variant) {
     bool update_cache = false;
-    if (!rx_cache[variant]) {
-        rx_cache[variant] = randomx_alloc_cache(static_cast<randomx_flags>(RANDOMX_FLAG_JIT | RANDOMX_FLAG_LARGE_PAGES));
-        if (!rx_cache[variant]) {
-            rx_cache[variant] = randomx_alloc_cache(RANDOMX_FLAG_JIT);
+    if (!rx_cache) {
+        rx_cache = randomx_alloc_cache(static_cast<randomx_flags>(RANDOMX_FLAG_JIT | RANDOMX_FLAG_LARGE_PAGES));
+        if (!rx_cache) {
+            rx_cache = randomx_alloc_cache(RANDOMX_FLAG_JIT);
         }
         update_cache = true;
     }
-    else if (memcmp(rx_seed_hash[variant], seed_hash_data, sizeof(rx_seed_hash[0])) != 0) {
+    else if (memcmp(rx_seed_hash, seed_hash_data, sizeof(rx_seed_hash)) != 0) {
         update_cache = true;
     }
 
-    //if (variant != rx_variant) {
+    if (variant != rx_variant) {
         switch (variant) {
             case xmrig::VARIANT_0:
                 randomx_apply_config(RandomX_MoneroConfig);
@@ -67,30 +63,33 @@ void init_rx(const uint8_t* seed_hash_data, xmrig::Variant variant) {
             case xmrig::VARIANT_RX_LOKI:
                 randomx_apply_config(RandomX_LokiConfig);
                 break;
+            case xmrig::VARIANT_RX_TXX:
+                randomx_apply_config(RandomX_TxchangecoinConfig);
+                break;
             default:
                 throw std::domain_error("Unknown RandomX variant");
         }
-        //rx_variant = variant;
-        //update_cache = true;
-    //}
+        rx_variant = variant;
+        update_cache = true;
+    }
 
     if (update_cache) {
-        memcpy(rx_seed_hash[variant], seed_hash_data, sizeof(rx_seed_hash[0]));
-        randomx_init_cache(rx_cache[variant], rx_seed_hash[variant], sizeof(rx_seed_hash[0]));
-        if (rx_vm[variant]) {
-            randomx_vm_set_cache(rx_vm[variant], rx_cache[variant]);
+        memcpy(rx_seed_hash, seed_hash_data, sizeof(rx_seed_hash));
+        randomx_init_cache(rx_cache, rx_seed_hash, sizeof(rx_seed_hash));
+        if (rx_vm) {
+            randomx_vm_set_cache(rx_vm, rx_cache);
         }
     }
 
-    if (!rx_vm[variant]) {
+    if (!rx_vm) {
         int flags = RANDOMX_FLAG_LARGE_PAGES | RANDOMX_FLAG_JIT;
 #if !SOFT_AES
         flags |= RANDOMX_FLAG_HARD_AES;
 #endif
 
-        rx_vm[variant] = randomx_create_vm(static_cast<randomx_flags>(flags), rx_cache[variant], nullptr);
-        if (!rx_vm[variant]) {
-            rx_vm[variant] = randomx_create_vm(static_cast<randomx_flags>(flags - RANDOMX_FLAG_LARGE_PAGES), rx_cache[variant], nullptr);
+        rx_vm = randomx_create_vm(static_cast<randomx_flags>(flags), rx_cache, nullptr);
+        if (!rx_vm) {
+            rx_vm = randomx_create_vm(static_cast<randomx_flags>(flags - RANDOMX_FLAG_LARGE_PAGES), rx_cache, nullptr);
         }
     }
 }
@@ -113,7 +112,7 @@ NAN_METHOD(randomx) {
 
     Local<Object> seed_hash = info[1]->ToObject();
     if (!Buffer::HasInstance(seed_hash)) return THROW_ERROR_EXCEPTION("Argument 2 should be a buffer object.");
-    if (Buffer::Length(seed_hash) != sizeof(rx_seed_hash[0])) return THROW_ERROR_EXCEPTION("Argument 2 size should be 32 bytes.");
+    if (Buffer::Length(seed_hash) != sizeof(rx_seed_hash)) return THROW_ERROR_EXCEPTION("Argument 2 size should be 32 bytes.");
 
     int variant = 0;
     if (info.Length() >= 3) {
@@ -128,7 +127,7 @@ NAN_METHOD(randomx) {
     }
 
     char output[32];
-    randomx_calculate_hash(rx_vm[variant], reinterpret_cast<const uint8_t*>(Buffer::Data(target)), Buffer::Length(target), reinterpret_cast<uint8_t*>(output));
+    randomx_calculate_hash(rx_vm, reinterpret_cast<const uint8_t*>(Buffer::Data(target)), Buffer::Length(target), reinterpret_cast<uint8_t*>(output));
 
     v8::Local<v8::Value> returnValue = Nan::CopyBuffer(output, 32).ToLocalChecked();
     info.GetReturnValue().Set(returnValue);

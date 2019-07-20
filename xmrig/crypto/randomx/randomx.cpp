@@ -70,7 +70,7 @@ RandomX_ConfigurationLoki::RandomX_ConfigurationLoki()
 	ProgramCount = 7;
 }
 
-RandomX_ConfigurationBase::RandomX_ConfigurationBase()
+RandomX_ConfigurationTxchangecoin::RandomX_ConfigurationTxchangecoin()
 	: ArgonMemory(262144)
 	, ArgonIterations(3)
 	, ArgonLanes(1)
@@ -151,7 +151,7 @@ RandomX_ConfigurationBase::RandomX_ConfigurationBase()
 #endif
 }
 
-void RandomX_ConfigurationBase::Apply()
+void RandomX_ConfigurationTxchangecoin::Apply()
 {
 #if defined(_M_X64) || defined(__x86_64__)
 	*(uint32_t*)(codeShhPrefetchTweaked + 3) = ArgonMemory * 16 - 1;
@@ -227,8 +227,9 @@ void RandomX_ConfigurationBase::Apply()
 RandomX_ConfigurationMonero RandomX_MoneroConfig;
 RandomX_ConfigurationWownero RandomX_WowneroConfig;
 RandomX_ConfigurationLoki RandomX_LokiConfig;
+RandomX_ConfigurationTxchangecoin RandomX_TxchangecoinConfig;
 
-RandomX_ConfigurationBase RandomX_CurrentConfig;
+RandomX_ConfigurationTxchangecoin RandomX_CurrentConfig;
 
 extern "C" {
 
