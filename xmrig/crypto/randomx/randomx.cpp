@@ -228,7 +228,7 @@ RandomX_ConfigurationTxchangecoin RandomX_TxchangecoinConfig;
 RandomX_ConfigurationWownero RandomX_WowneroConfig;
 RandomX_ConfigurationLoki RandomX_LokiConfig;
 
-RandomX_ConfigurationTxchangecoin RandomX_CurrentConfig;
+RandomX_ConfigurationBase RandomX_CurrentConfig;
 
 extern "C" {
 
