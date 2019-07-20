@@ -53,9 +53,9 @@ typedef struct randomx_dataset randomx_dataset;
 typedef struct randomx_cache randomx_cache;
 typedef struct randomx_vm randomx_vm;
 
-struct RandomX_ConfigurationTxchangecoin
+struct RandomX_ConfigurationBase
 {
-	RandomX_ConfigurationTxchangecoin();
+	RandomX_ConfigurationBase();
 
 	void Apply();
 
@@ -162,21 +162,21 @@ struct RandomX_ConfigurationTxchangecoin
 	int CEIL_NOP;
 };
 
-struct RandomX_ConfigurationTxchangecoin : public RandomX_ConfigurationTxchangecoin {};
-struct RandomX_ConfigurationWownero : public RandomX_ConfigurationTxchangecoin { RandomX_ConfigurationWownero(); };
-struct RandomX_ConfigurationLoki : public RandomX_ConfigurationTxchangecoin { RandomX_ConfigurationLoki(); };
+struct RandomX_ConfigurationTxchangecoin : public RandomX_ConfigurationBase {};
+struct RandomX_ConfigurationWownero : public RandomX_ConfigurationBase { RandomX_ConfigurationWownero(); };
+struct RandomX_ConfigurationLoki : public RandomX_ConfigurationBase { RandomX_ConfigurationLoki(); };
 
 extern RandomX_ConfigurationTxchangecoin RandomX_TxchangecoinConfig;
 extern RandomX_ConfigurationWownero RandomX_WowneroConfig;
 extern RandomX_ConfigurationLoki RandomX_LokiConfig;
 
-extern RandomX_ConfigurationTxchangecoin RandomX_CurrentConfig;
+extern RandomX_ConfigurationBase RandomX_CurrentConfig;
 
 template<typename T>
 void randomx_apply_config(const T& config)
 {
-	static_assert(sizeof(T) == sizeof(RandomX_ConfigurationTxchangecoin), "Invalid RandomtxX configuration struct size");
-	static_assert(std::is_base_of<RandomX_ConfigurationTxchangecoin, T>::value, "Incompatible RandomtxX configuration struct");
+	static_assert(sizeof(T) == sizeof(RandomX_ConfigurationBase), "Invalid RandomtxX configuration struct size");
+	static_assert(std::is_base_of<RandomX_ConfigurationBase, T>::value, "Incompatible RandomtxX configuration struct");
 	RandomX_CurrentConfig = config;
 	RandomX_CurrentConfig.Apply();
 }
