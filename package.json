@@ -1,25 +1,57 @@
 {
+  "_from": "git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
+  "_id": "cryptonight-hashing@10.0.0",
+  "_inBundle": false,
+  "_location": "/cryptonight-hashing",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "cryptonight-hashing@git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
     "name": "cryptonight-hashing",
-    "version": "10.0.0",
-    "main": "cryptonight-hashing",
-    "author": {
-        "name": "Multiple",
-        "email": "Check The Git Repo"
-    },
-    "license": "GPL-3.0-or-later",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/MoneroOcean/node-cryptonight-hashing.git"
-    },
-    "dependencies": {
-        "bindings": "*",
-        "nan": "^2.8.0"
-    },
-    "keywords": [
-        "cryptonight",
-        "cryptonote",
-        "forknote",
-        "bytecoin",
-        "monero"
-    ]
+    "escapedName": "cryptonight-hashing",
+    "rawSpec": "git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
+    "saveSpec": "git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
+    "fetchSpec": "git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/txchangecoin-project/node-cryptonight-hashing.git#fcfc232be02febce5f467975033a7ef4dc11761a",
+  "_spec": "cryptonight-hashing@git://github.com/txchangecoin-project/node-cryptonight-hashing.git",
+  "_where": "/home/edirin/GOD",
+  "author": {
+    "name": "Multiple",
+    "email": "Check The Git Repo"
+  },
+  "bugs": {
+    "url": "https://github.com/MoneroOcean/node-cryptonight-hashing/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "bindings": "*",
+    "nan": "^2.8.0"
+  },
+  "deprecated": false,
+  "description": "node-cryptonight-hashing ===============",
+  "gypfile": true,
+  "homepage": "https://github.com/MoneroOcean/node-cryptonight-hashing#readme",
+  "keywords": [
+    "cryptonight",
+    "cryptonote",
+    "forknote",
+    "bytecoin",
+    "monero"
+  ],
+  "license": "GPL-3.0-or-later",
+  "main": "cryptonight-hashing",
+  "name": "cryptonight-hashing",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoneroOcean/node-cryptonight-hashing.git"
+  },
+  "scripts": {
+    "install": "node-gyp rebuild"
+  },
+  "version": "10.0.0"
 }
